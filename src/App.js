@@ -7,6 +7,8 @@ import theme from "./theme";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 
+import './mock'
+
 function App() {
   return (
     <ThemeProvider theme={theme}>

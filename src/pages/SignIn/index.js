@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Box, Grid, TextField, Typography, Button, Link } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { makeStyles } from '@material-ui/core/styles'
+import { useNavigate } from 'react-router-dom'
+import { Avatar, Box, Grid, TextField, Typography, Button, Link, FormHelperText } from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+
+import authService from '../../services/authService';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,13 +41,25 @@ function Copyright() {
 }
 
 function SignIn() {
+    const classes = useStyles()
+    const navigate = useNavigate()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
 
-    const classes = useStyles();
+    async function handleSignIn() {
+        try {
+            await authService.signIn(email, password)
+            navigate('/')
+        } catch (error) {
+            setErrorMessage(error.message)
+        }
+    }
 
     return (
         <Grid container className={classes.root}>
             <Grid item container md={7}
-                direction="column" justify="center" alignItems="center"
+                direction="column" justifyContent="center" alignItems="center"
                 className={classes.image}>
                 <Typography style={{ color: '#fff', fontSize: 35, lineHeight: '45px' }}>
                     <strong>Simplificando a forma de conectar desenvolvedores</strong>
@@ -69,6 +85,8 @@ function SignIn() {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <TextField
                             variant="outlined"
@@ -80,16 +98,22 @@ function SignIn() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         <Button
-                            type="submit"
                             variant="contained"
                             color="primary"
                             fullWidth
                             className={classes.button}
+                            onClick={handleSignIn}
                         >
                             Entrar
                         </Button>
+                        {
+                            errorMessage &&
+                            <FormHelperText error>{errorMessage}</FormHelperText>
+                        }
                         <Grid container>
                             <Grid item>
                                 <Link>Esqueceu sua senha?</Link>

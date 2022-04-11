@@ -90,8 +90,6 @@ function PostCard({ post }) {
                 <IconButton aria-label="favorite" className={classes.favorite}>
                     <BookmarkIcon />
                 </IconButton>
-
-
             </CardActions>
         </Card>
     );

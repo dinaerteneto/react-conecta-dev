@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { useNavigate } from 'react-router-dom'
-import { Avatar, Box, Grid, TextField, Typography, Button, Link, FormHelperText } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import { Avatar, Box, Grid, TextField, Typography, Button, Link, FormHelperText } from '@material-ui/core'
 
-import authService from '../../services/authService';
-
+import signIn from '../../actions/accountActions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -46,10 +46,11 @@ function SignIn() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+    const dispatch = useDispatch()
 
     async function handleSignIn() {
         try {
-            await authService.signIn(email, password)
+            await dispatch(signIn(email, password))
             navigate('/')
         } catch (error) {
             setErrorMessage(error.message)

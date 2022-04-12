@@ -11,17 +11,20 @@ import GuestRoute from "./routes/GuestRoute"
 import store from './store'
 
 import './mock'
+import Auth from "./components/Auth"
 
 function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <Routes>
-            <Route path="*" element={<div>Not found 404</div>} />
-            <Route path="/" element={<GuestRoute element={<Home />} />} />
-            <Route path="/sign-in" element={<SignIn />} />
-          </Routes>
+          <Auth>
+            <Routes>
+              <Route path="*" element={<div>Not found 404</div>} />
+              <Route path="/" element={<GuestRoute element={<Home />} />} />
+              <Route path="/sign-in" element={<SignIn />} />
+            </Routes>
+          </Auth>
         </BrowserRouter>
       </ThemeProvider>
     </Provider>

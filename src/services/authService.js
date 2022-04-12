@@ -1,12 +1,11 @@
 import axios from '../utils/axios'
-import { useSelector } from 'react-redux'
-import isEmpty from '../utils/isEmpty'
 class AuthService {
-    signIn = async (username, password) => {
+    signIn = (username, password) => {
         return new Promise((resolve, reject) => {
             axios.post('/api/home/login', { username, password })
                 .then(response => {
                     if (response.data.user) {
+                        this.setToken('jwt')
                         resolve(response.data)
                     } else {
                         reject(response.data.error)
@@ -18,16 +17,31 @@ class AuthService {
         })
     }
 
-    setUser = (user) => {
-        localStorage.setItem('user', JSON.stringify(user))
+    signInWithToken = () => {
+        return new Promise((resolve, reject) => {
+            axios.post('/api/home/me')
+                .then(response => {
+                    if (response.data.user) {
+                        console.log('aqui', response.data)
+                        resolve(response.data.user)
+                    } else {
+                        reject(response.data.error)
+                    }
+                })
+                .catch(error => {
+                    reject(error.response.data)
+                })
+        })
     }
 
-    getUser = () => {
-        const user = useSelector(state => state.user)
-        return user && isEmpty(user) ? user : null
+
+    setToken = (token) => {
+        localStorage.setItem('accessToken', token)
     }
 
-    isAuthenticated = () => !!this.getUser()
+    getToken = () => localStorage.getItem('accessToken')
+
+    isAuthenticated = () => !!this.getToken()
 }
 
 const authService = new AuthService()

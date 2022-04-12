@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { Avatar, Box, Grid, TextField, Typography, Button, Link, FormHelperText } from '@material-ui/core'
 
-import signIn from '../../actions/accountActions';
+import { signIn } from '../../actions/accountActions';
 
 const useStyles = makeStyles((theme) => ({
     root: {

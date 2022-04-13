@@ -1,17 +1,17 @@
-import React, { useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import authService from "../../services/authService";
 import { setUserData } from '../../actions/accountActions'
 
 function Auth({ children }) {
     const dispatch = useDispatch()
-    const initAuth = useCallback(async () => {
+    const initAuth = useCallback(() => {
         if (authService.isAuthenticated()) {
-            await dispatch(setUserData())
+            dispatch(setUserData())
         }
     }, [dispatch])
 
-    useEffect(() => { initAuth() }, [initAuth])
+    useEffect(() => initAuth(), [initAuth])
 
     return children
 }

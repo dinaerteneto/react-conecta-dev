@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from '@material-ui/core'
-import { AppBar, Toolbar, makeStyles, SvgIcon, Avatar } from "@material-ui/core"
+import { AppBar, Toolbar, makeStyles, SvgIcon } from "@material-ui/core"
 import { Bell } from "react-feather"
-import { useSelector } from "react-redux";
+import Account from "./account";
 
 const useStyles = makeStyles({
     appBar: {
@@ -28,7 +28,6 @@ const useStyles = makeStyles({
 
 function Header() {
     const classes = useStyles();
-    const user = useSelector(state => state.account.user)
 
     return (
         <AppBar position="fixed" color="inherit" className={classes.appBar}>
@@ -42,7 +41,7 @@ function Header() {
                     <SvgIcon className={classes.bell}>
                         <Bell />
                     </SvgIcon>
-                    <Avatar alt="{user.name}" src={user && user.avatar} />
+                    <Account />
                 </div>
             </Toolbar>
         </AppBar>

@@ -11,7 +11,7 @@ function Auth({ children }) {
         }
     }, [dispatch])
 
-    useEffect(() => { initAuth() }, [initAuth])
+    useEffect(() => initAuth(), [initAuth])
 
     return children
 }

@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import authService from "../../services/authService";
 import { setUserData } from '../../actions/accountActions'
+import authService from "../../services/authService";
 
 function Auth({ children }) {
     const dispatch = useDispatch()

@@ -2,7 +2,8 @@ import axios from '../utils/axios'
 class AuthService {
     signIn = (username, password) => {
         return new Promise((resolve, reject) => {
-            axios.post('/api/home/login', { username, password })
+            axios
+                .post('/api/home/login', { username, password })
                 .then(response => {
                     if (response.data.user) {
                         this.setToken('jwt')
@@ -19,10 +20,10 @@ class AuthService {
 
     signInWithToken = () => {
         return new Promise((resolve, reject) => {
-            axios.post('/api/home/me')
+            axios
+                .post('/api/home/me')
                 .then(response => {
                     if (response.data.user) {
-                        console.log('aqui', response.data)
                         resolve(response.data.user)
                     } else {
                         reject(response.data.error)

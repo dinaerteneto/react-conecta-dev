@@ -7,7 +7,7 @@ import { Provider } from "react-redux"
 import theme from "./theme"
 import Home from "./pages/Home"
 import SignIn from "./pages/SignIn"
-import GuestRoute from "./routes/GuestRoute"
+import PrivateRoute from "./routes/PrivateRoute"
 import store from './store'
 
 import './mock'
@@ -21,7 +21,7 @@ function App() {
           <Auth>
             <Routes>
               <Route path="*" element={<div>Not found 404</div>} />
-              <Route path="/" element={<GuestRoute element={<Home />} />} />
+              <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
               <Route path="/sign-in" element={<SignIn />} />
             </Routes>
           </Auth>

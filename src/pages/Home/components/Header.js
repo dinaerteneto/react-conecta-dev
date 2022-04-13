@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 
 function Header() {
     const classes = useStyles();
-    const { user } = useSelector(state => state.account.user)
+    const user = useSelector(state => state.account.user)
 
     return (
         <AppBar position="fixed" color="inherit" className={classes.appBar}>

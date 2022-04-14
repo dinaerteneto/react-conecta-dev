@@ -16,6 +16,5 @@ mock.onPost('api/home/login').reply((config) => {
     return [200, { user }]
 })
 
-
 mock.onPost('api/home/me').reply(200, { user })
 

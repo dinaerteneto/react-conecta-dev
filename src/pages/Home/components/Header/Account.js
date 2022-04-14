@@ -6,7 +6,7 @@ import { signOut } from "../../../../actions/accountActions"
 import { useNavigate } from "react-router-dom"
 
 function Account() {
-    const { user } = useSelector(state => state.account.user)
+    const user = useSelector(state => state.account.user)
     const isAuthenticated = !!user
 
     const [isOpen, setOpen] = useState(false)

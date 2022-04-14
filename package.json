@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
     "axios-mock-adapter": "^1.20.0",
+    "moment": "^2.29.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-feather": "^2.0.9",

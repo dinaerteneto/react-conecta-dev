@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { SvgIcon, IconButton, Popover, Typography, Box, List, ListItem, ListItemAvatar, Avatar, ListItemText } from "@material-ui/core"
-import { getNotifications } from "../../../../actions/notificationsActions";
+import { getNotifications } from "../../../actions/notificationsActions";
 import { makeStyles } from "@material-ui/styles";
 import {
     Bell as BellIcon,

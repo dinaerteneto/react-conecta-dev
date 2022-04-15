@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react"
 import Avatar from "@material-ui/core/Avatar"
 import { Menu, MenuItem } from "@material-ui/core"
 import { useDispatch, useSelector } from "react-redux"
-import { signOut } from "../../../../actions/accountActions"
+import { signOut } from "../../../actions/accountActions"
 import { useNavigate } from "react-router-dom"
 
 function Account() {

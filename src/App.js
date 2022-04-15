@@ -20,9 +20,8 @@ function App() {
         <BrowserRouter>
           <Auth>
             <Routes>
-              <Route path="*" element={<div>Not found 404</div>} />
-              <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
               <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/*" element={<PrivateRoute><Home /></PrivateRoute>} />
             </Routes>
           </Auth>
         </BrowserRouter>

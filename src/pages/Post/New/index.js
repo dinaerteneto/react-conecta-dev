@@ -1,8 +1,7 @@
 import React, { useState } from "react"
-import { useSelector } from "react-redux";
-import { AppBar, Box, Button, makeStyles, Toolbar, Typography, Divider, Avatar } from "@material-ui/core";
-import Markdown from 'react-markdown'
+import { AppBar, Box, Button, makeStyles, Toolbar } from "@material-ui/core";
 import PostEditor from "./Editor";
+import PostPreview from "./Preview";
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -15,20 +14,6 @@ const useStyles = makeStyles((theme) => ({
     },
     image: {
         height: 100
-    },
-    imagePreview: {
-        height: '100%'
-    },
-    textArea: {
-        width: '100%',
-        height: '100%',
-        resize: 'none',
-        border: 'none',
-        outline: 'none',
-        fontSize: 15
-    },
-    avatar: {
-        marginRight: theme.spacing(1)
     }
 }))
 
@@ -38,7 +23,7 @@ function NewPost() {
     const [title, setTitle] = useState('')
     const [markdownText, setMarkdownText] = useState('')
     const [image, setImage] = useState(null)
-    const user = useSelector(state => state.account.user)
+
 
     const handleTitle = (event) => {
         setTitle(event.target.value)
@@ -67,32 +52,12 @@ function NewPost() {
                     />
                 </Box>
                 <Box width="50%" height="100%" padding={2}>
-                    {image && (
-                        <Box mb={2}>
-                            <img src={image} alt="imagem" className={classes.imagePreview} />
-                        </Box>
-                    )}
-                    <Box mb={2}>
-                        <Typography variant="h2">{title}</Typography>
-                    </Box>
-                    <Box display="flex" alignItems="center" mb={2}>
-                        <Box>
-                            <Avatar
-                                alt="{user.name}"
-                                className={classes.avatar}
-                                src={user && user.avatar}
-                            />
-                        </Box>
-                        <Box>
-                            <Typography variant="body1">{user && user.name}</Typography>
-                            <Typography variant="body2">@{user && user.username}</Typography>
-                        </Box>
-                    </Box>
-                    <Box mb={2}>
-                        <Typography variant="body1">{tags.map(tag => tag.title).join(', ')}</Typography>
-                    </Box>
-                    <Divider />
-                    <Markdown children={markdownText} />
+                    <PostPreview
+                        image={image}
+                        title={title}
+                        tags={tags}
+                        markdownText={markdownText}
+                    />
                 </Box>
             </Box>
             <AppBar position="fixed" color="inherit" className={classes.appBar}>

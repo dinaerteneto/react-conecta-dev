@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import { AppBar, Box, Button, makeStyles, Toolbar } from "@material-ui/core";
 import PostEditor from "./Editor";
 import PostPreview from "./Preview";
+import { PostProvider } from "../../../context/PostContext";
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -19,45 +20,15 @@ const useStyles = makeStyles((theme) => ({
 
 function NewPost() {
     const classes = useStyles()
-    const [tags, setTags] = useState([])
-    const [title, setTitle] = useState('')
-    const [markdownText, setMarkdownText] = useState('')
-    const [image, setImage] = useState(null)
-
-
-    const handleTitle = (event) => {
-        setTitle(event.target.value)
-    }
-
-    const handleTagsChange = (event, values) => {
-        setTags(values)
-    }
-    const handleChangeMarkdown = (event) => {
-        setMarkdownText(event.currentTarget.value)
-    }
 
     return (
-        <>
+        <PostProvider>
             <Box display="flex" height="calc(100% - 70px)" overflow="scroll">
                 <Box width="50%" height="100%" padding={2} borderRight="1px solid #DDD">
-                    <PostEditor
-                        image={image}
-                        setImage={setImage}
-                        title={title}
-                        setTitle={handleTitle}
-                        tags={tags}
-                        setTags={handleTagsChange}
-                        markdownText={markdownText}
-                        setMarkdownText={handleChangeMarkdown}
-                    />
+                    <PostEditor />
                 </Box>
                 <Box width="50%" height="100%" padding={2}>
-                    <PostPreview
-                        image={image}
-                        title={title}
-                        tags={tags}
-                        markdownText={markdownText}
-                    />
+                    <PostPreview />
                 </Box>
             </Box>
             <AppBar position="fixed" color="inherit" className={classes.appBar}>
@@ -66,7 +37,7 @@ function NewPost() {
                     <Button color="secondary" variant="outlined">Publicar</Button>
                 </Toolbar>
             </AppBar>
-        </>
+        </PostProvider>
     )
 }
 

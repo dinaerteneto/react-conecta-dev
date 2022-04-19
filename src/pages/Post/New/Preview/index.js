@@ -2,6 +2,7 @@ import React from "react"
 import { useSelector } from "react-redux";
 import { Box, makeStyles, Typography, Avatar, Divider } from "@material-ui/core";
 import Markdown from 'react-markdown'
+import { usePost } from "../../../../context/PostContext";
 
 const useStyles = makeStyles((theme) => ({
     Preview: {
@@ -12,10 +13,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-function PostPreview({ image, title, tags, markdownText }) {
+function PostPreview() {
     const user = useSelector(state => state.account.user)
     const classes = useStyles()
-
+    const ctx = usePost()
+    const {
+        title,
+        image,
+        tags,
+        markdownText
+    } = ctx
     return (
         <>
             {image && (

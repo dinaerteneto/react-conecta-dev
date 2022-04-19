@@ -3,6 +3,8 @@ import Autocomplete from "@material-ui/lab/Autocomplete"
 import { Button, Box, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import { useDropzone } from "react-dropzone"
+import Title from "./Title";
+import { usePost } from "../../../../context/PostContext";
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -30,17 +32,17 @@ const aTags = [
     { title: 'MongoDB' },
 ]
 
-function PostEditor({
-    image,
-    setImage,
-    title,
-    setTitle,
-    tags,
-    setTags,
-    markdownText,
-    setMarkdownText,
-}) {
+function PostEditor() {
     const classes = useStyles()
+    const ctx = usePost()
+    const {
+        image,
+        setImage,
+        tags,
+        setTags,
+        markdownText,
+        setMarkdownText
+    } = ctx
 
     // dropzone
     const onDrop = useCallback(acceptedFiles => {
@@ -70,7 +72,7 @@ function PostEditor({
                 </Box>
             )}
             <Box mb={2}>
-                <TextField name="title" placeholder="Título" fullWidth value={title} onChange={setTitle} />
+                <Title />
             </Box>
             <Box mb={2}>
                 <Autocomplete

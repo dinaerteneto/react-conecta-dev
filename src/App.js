@@ -12,6 +12,7 @@ import store from './store'
 
 import './mock'
 import Auth from "./components/Auth"
+import SignUp from "./pages/SignUp"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Auth>
             <Routes>
               <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/sign-up" element={<SignUp />} />
               <Route path="/*" element={<PrivateRoute><Home /></PrivateRoute>} />
             </Routes>
           </Auth>

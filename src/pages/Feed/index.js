@@ -1,14 +1,12 @@
 import React, { useCallback, useEffect } from "react"
-import { Box, Container, makeStyles } from "@material-ui/core"
+import { Box, Container, Hidden, makeStyles } from "@material-ui/core"
 
 import PostCard from "../../components/PostCard"
 import Navbar from "./Navbar"
 import axios from "../../utils/axios"
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-
-  }
+const useStyles = makeStyles(() => ({
+  root: {},
 }))
 
 function Feed() {
@@ -25,7 +23,9 @@ function Feed() {
   return (
     <Container maxWidth="lg">
       <Box display="flex">
-        <Navbar />
+        <Hidden smDown>
+          <Navbar />
+        </Hidden>
         <div className={classes.root}>
           {posts.map(post => (
             <PostCard key={post.id} post={post} />

@@ -5,41 +5,43 @@ import { makeStyles } from "@material-ui/core";
 import Header from "./Header";
 import Feed from "../Feed";
 import NewPost from "../Post/New";
+import Post from "../Post";
 
 const useStyles = makeStyles({
-    root: {
-        display: 'flex',
-        flexDirection: 'column'
-    },
-    main: {
-        height: 'calc(100vh - 64px)',
-        padding: 24,
-    },
-    toolbar: {
-        minHeight: 64
-    },
-    box: {
-        display: 'flex'
-    }
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  main: {
+    height: 'calc(100vh - 64px)',
+    padding: 24,
+  },
+  toolbar: {
+    minHeight: 64
+  },
+  box: {
+    display: 'flex'
+  }
 })
 
 function Home() {
-    const classes = useStyles();
-    return (
-        <div className={classes.root}>
-            <Header />
-            <div className={classes.toolbar} />
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <Header />
+      <div className={classes.toolbar} />
 
-            <main className={classes.main}>
-                <Routes>
-                    <Route path="/" element={<Feed />} />
-                    <Route path="/feed" element={<Feed />} />
-                    <Route path="/post/new" element={<NewPost />} />
-                    <Route path="*" element={<div>Not found 404</div>} />
-                </Routes>
-            </main>
-        </div>
-    )
+      <main className={classes.main}>
+        <Routes>
+          <Route path="/" element={<Feed />} />
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/post/new" element={<NewPost />} />
+          <Route path="/post/:slug" element={<Post />} />
+          <Route path="*" element={<div>Not found 404</div>} />
+        </Routes>
+      </main>
+    </div>
+  )
 }
 
 export default Home

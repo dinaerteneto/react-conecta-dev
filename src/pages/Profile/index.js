@@ -29,8 +29,8 @@ function Profile() {
 
   return (
     <Container maxWidth="lg">
-      <Grid container>
-        <Grid item md={4}>
+      <Grid container spacing={4}>
+        <Grid item md={4} xs={12}>
           <AccountProfile />
         </Grid>
         <Grid item md={8}>

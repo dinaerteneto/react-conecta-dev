@@ -1,7 +1,14 @@
 import React from "react"
+import Followers from "./Followers"
+import Following from "./Following"
 
 function Connections() {
-  return (<h1>Conexões</h1>)
+  return (
+    <>
+      <Followers />
+      <Following />
+    </>
+  )
 }
 
 export default Connections

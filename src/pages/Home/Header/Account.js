@@ -43,7 +43,7 @@ function Account() {
             getContentAnchorEl={null}
             onClose={handleClose}
           >
-            <MenuItem>Perfil</MenuItem>
+            <MenuItem onClick={() => navigate(`/${user && user.username}`)}>Perfil</MenuItem>
             <MenuItem>Meus posts</MenuItem>
             <MenuItem>Minhas conexões</MenuItem>
             <MenuItem onClick={handleSignOut}>Sair</MenuItem>

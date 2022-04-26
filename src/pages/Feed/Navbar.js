@@ -1,6 +1,7 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import { Paper, makeStyles, Button, ListSubheader, ListItem, ListItemText } from "@material-ui/core"
+import { useSelector } from "react-redux"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,14 +28,20 @@ const tags = [
 function Navbar() {
   const classes = useStyles()
   const navigate = useNavigate()
+  const user = useSelector((state) => state.account.user)
+  const isAuthenticaded = !!user
+
   return (
     <Paper className={classes.root}>
-      <Button
-        variant="outlined"
-        color="secondary"
-        className={classes.button}
-        onClick={() => { navigate('/sign-up') }}
-      >Registrar grátis</Button>
+      {!isAuthenticaded && (
+        <Button
+          variant="outlined"
+          color="secondary"
+          className={classes.button}
+          onClick={() => { navigate('/sign-up') }}
+        >Registrar grátis
+        </Button>
+      )}
       <ListSubheader>
         {
           tags.map(tag => (
